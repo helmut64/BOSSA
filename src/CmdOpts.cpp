@@ -104,7 +104,6 @@ CmdOpts::parse()
         case ArgOptional:
             long_opts[optIdx].has_arg = optional_argument;
             *optPtr++ = ':';
-            *optPtr++ = ':';
             break;
         case ArgRequired:
             long_opts[optIdx].has_arg = required_argument;
@@ -133,7 +132,14 @@ CmdOpts::parse()
             switch (_opts[optIdx].arg.type)
             {
             case ArgInt:
-                *_opts[optIdx].arg.value.intPtr = strtol(optarg, NULL, 0);
+				if (strcmp(_opts[optIdx].arg.name, "BOOL") == 0 && !(*(char *)optarg >= '0' && *(char *)optarg <= '9')) {
+					if (strcmp((char *)optarg, "true") == 0 || strcmp((char *)optarg, "TRUE"))
+						*_opts[optIdx].arg.value.intPtr = 1;
+					else
+						*_opts[optIdx].arg.value.intPtr = 0;
+				} else {
+                	*_opts[optIdx].arg.value.intPtr = strtol(optarg, NULL, 0);
+				}
                 break;
             default:
             case ArgString:
