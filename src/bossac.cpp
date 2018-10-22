@@ -96,7 +96,7 @@ BossaConfig::BossaConfig()
     arduinoErase = false;
 
     readArg = 0;
-    offsetArg = 0;
+    offsetArg = 8192;
     bootArg = 1;
     bodArg = 1;
     borArg = 1;
