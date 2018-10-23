@@ -38,7 +38,7 @@ public:
 
     virtual ~D5xNvmFlash();
 
-    void eraseAll(uint32_t offset);
+    void eraseAll(uint32_t offset, uint32_t length);
     void eraseAuto(bool enable);
 
     std::vector<bool> getLockRegions();

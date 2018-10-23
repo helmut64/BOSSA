@@ -71,10 +71,21 @@ FlasherInfo::print()
 }
 
 void
-Flasher::erase(uint32_t foffset)
+Flasher::erase(const char* filename, uint32_t foffset)
 {
+	uint32_t length = 0;
+	FILE* infile;
+	infile = fopen(filename, "rb");
+	if (infile) {
+		fseek(infile, 0, SEEK_END);
+    	long size = ftell(infile);
+		fclose(infile);
+		if (size)
+			length = size;
+	}
+
     _observer.onStatus("Erase flash\n");
-    _flash->eraseAll(foffset);
+    _flash->eraseAll(foffset, length);
     _flash->eraseAuto(false);
 }
 

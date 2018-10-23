@@ -50,7 +50,7 @@ public:
               bool canBrownout);
     virtual ~EefcFlash();
 
-    void eraseAll(uint32_t offset);
+    void eraseAll(uint32_t offset, uint32_t length);
     void eraseAuto(bool enable);
 
     std::vector<bool> getLockRegions();

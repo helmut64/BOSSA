@@ -76,8 +76,10 @@ EfcFlash::~EfcFlash()
 }
 
 void
-EfcFlash::eraseAll(uint32_t offset)
+EfcFlash::eraseAll(uint32_t offset, uint32_t length)
 {
+	// TODO
+	// handle length option
     if (offset != 0)
         throw FlashEraseError();
 

@@ -90,7 +90,7 @@ EefcFlash::~EefcFlash()
 }
 
 void
-EefcFlash::eraseAll(uint32_t offset)
+EefcFlash::eraseAll(uint32_t offset, uint32_t length)
 {
     // Do a full chip erase if the offset is 0
     if (offset == 0)
@@ -114,6 +114,8 @@ EefcFlash::eraseAll(uint32_t offset)
         if (offset % (_size * PagesPerErase))
             throw FlashEraseError();
 
+        // TODO
+        // handle length option
         // Erase each PagesPerErase set of pages
         for (uint32_t pageNum = offset / _size; pageNum < _pages; pageNum += PagesPerErase)
         {

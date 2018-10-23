@@ -126,7 +126,7 @@ public:
     virtual uint32_t totalSize() { return _size * _pages; }
     virtual uint32_t lockRegions() { return _lockRegions; }
 
-    virtual void eraseAll(uint32_t offset) = 0;
+    virtual void eraseAll(uint32_t offset, uint32_t length) = 0;
     virtual void eraseAuto(bool enable) = 0;
 
     virtual std::vector<bool> getLockRegions() = 0;
