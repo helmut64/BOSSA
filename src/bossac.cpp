@@ -137,6 +137,7 @@ BossaObserver::onProgress(int num, int div)
     
     if (ticks == _lastTicks)
         return;
+    _lastTicks = ticks;
     
     printf("\r[");
     while (ticks-- > 0)
@@ -150,8 +151,6 @@ BossaObserver::onProgress(int num, int div)
     }
     printf("] %d%% (%d/%d pages)", num * 100 / div, num, div);
     fflush(stdout);
-    
-    _lastTicks = 0;
 }
 
 static BossaConfig config;
@@ -407,7 +406,7 @@ main(int argc, char* argv[])
         if (config.erase)
         {
             timer_start();
-            flasher.erase(config.offsetArg);
+            flasher.erase(argv[args], config.offsetArg);
             printf("\nDone in %5.3f seconds\n", timer_stop());
         }
 
